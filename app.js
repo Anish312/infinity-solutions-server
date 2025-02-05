@@ -4,21 +4,26 @@ const errorMiddleware = require('./middleware/error')
 const cookieParser = require("cookie-parser")
 var cors = require('cors')
 
+app.use(cors({
+    origin: "https://blue-website-3d4f8.web.app",  // Frontend URL
+    credentials: true                 // Allows cookies to be sent
+  }));
 
-const allowedOrigins = ["https://blue-website-3d4f8.web.app"];
+// const allowedOrigins = ["https://blue-website-3d4f8.web.app"];
+// const allowedOrigins = ["*"];
 
-app.use(
-  cors({
-    origin: function (origin, callback) {
-      if (!origin || allowedOrigins.includes(origin)) {
-        callback(null, true);
-      } else {
-        callback(new Error("Not allowed by CORS"));
-      }
-    },
-    credentials: true,
-  })
-);
+// app.use(
+//   cors({
+//     origin: function (origin, callback) {
+//       if (!origin || allowedOrigins.includes(origin)) {
+//         callback(null, true);
+//       } else {
+//         callback(new Error("Not allowed by CORS"));
+//       }
+//     },
+//     credentials: true,
+//   })
+// );
 app.use(express.json());
 app.use(cookieParser());
 app.use('/uploads', express.static('uploads'));
