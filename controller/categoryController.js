@@ -1,3 +1,4 @@
+const catchAsyncErrors = require("../middleware/catchAsyncErrors");
 const Category = require("../models/categoryModel");
 
 // Create Category
@@ -77,3 +78,13 @@ exports.getCategory = async (req, res) => {
     }
   };
   
+
+exports.deleteCategory = catchAsyncErrors(async (req, res) => {
+    const { id } = req.params;
+    console.log(id)
+    const category = await Category.findByIdAndDelete(id);
+    if (!category) {
+      return res.status(404).json({ success: false, message: "Category not found" });
+    }
+    res.status(200).json({ success: true, message: "Category deleted successfully" });
+  })
