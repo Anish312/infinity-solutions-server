@@ -1,5 +1,5 @@
 const catchAsyncErrors = require("../middleware/catchAsyncErrors");
-const Contact = require("../models/ContactModel");
+const Contact = require("../models/contactModel");
 
 exports.createContact = catchAsyncErrors(async (req, res) => {
     const { name, email, phone, message } = req.body;
