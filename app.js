@@ -5,7 +5,7 @@ const cookieParser = require("cookie-parser")
 var cors = require('cors')
 
 app.use(cors({
-    origin: "http://localhost:3000",  // Frontend URL
+    origin: "https://blue-website-3d4f8.web.app",  // Frontend URL
     credentials: true                 // Allows cookies to be sent
   }));
 // app.use(cors({
