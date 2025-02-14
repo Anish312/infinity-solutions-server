@@ -5,7 +5,7 @@ const cookieParser = require("cookie-parser")
 var cors = require('cors')
 
 app.use(cors({
-    origin: "https://blue-website-3d4f8.web.app",  // Frontend URL
+    origin: "http://localhost:3000",  // Frontend URL
     credentials: true                 // Allows cookies to be sent
   }));
 // app.use(cors({
@@ -34,7 +34,13 @@ const user  = require("./routes/userRoute")
 const order  = require("./routes/orderRoute")
 const categoryRoutes = require("./routes/categoryRoute");
 const contactRoutes = require("./routes/contactRoute");
+const blogRoutes = require("./routes/blogRoutes");
+const secondSectionRoutes = require("./routes/secondSectionRoutes");
+
+app.use("/api/v1/second-sections", secondSectionRoutes);
+
 app.use("/api/v1", contactRoutes);
+app.use("/api/v1", blogRoutes);
 
 app.use("/api/v1", categoryRoutes);
 app.use("/api/v1",product)
