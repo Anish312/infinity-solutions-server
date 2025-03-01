@@ -2,21 +2,21 @@ const Blog = require("../models/blogModel");
 
 // Create Blog with Image Upload
 exports.createBlog = async (req, res) => {
-  try {
-    const { title, heading, description, content, author, category } = req.body;
-    const iconImage = req.file ? req.file.path : null; // Get image file path
+    try {
+        const { title, heading, description, content, author, category } = req.body;
+        const iconImage = req.file ? req.file.path : null;
 
-    if (!title || !content || !author || !category || !iconImage) {
-      return res.status(400).json({ message: "All fields are required, including icon image" });
+        if (!title || !content || !author || !category || !iconImage) {
+            return res.status(400).json({ message: "All fields are required, including icon video" });
+        }
+
+        const newBlog = new Blog({ title, heading, description, content, author, category, iconImage });
+        await newBlog.save();
+
+        res.status(201).json({ success: true, message: "Blog created", data: newBlog });
+    } catch (error) {
+        res.status(500).json({ message: error.message });
     }
-
-    const newBlog = new Blog({ title, heading, description, content, author, category, iconImage });
-    await newBlog.save();
-
-    res.status(201).json({ success: true, message: "Blog created", data: newBlog });
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
 };
 
 // @desc    Get all blogs
